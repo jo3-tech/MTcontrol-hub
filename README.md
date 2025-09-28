@@ -23,7 +23,7 @@ The recommended method to build this project is with openFrameworks 0.11.x using
 ...\openframeworks\of_v0.11.0_vs_release\apps\myApps
 ```
 
-The release executable can be found in the [release folder](release). It is a portable program. Simply download the file `ncHub 0.0.0.zip`, extract to your desired directory, open the `ncHub 0.0.0` folder and double click on `ncHub.exe` to start the application. It runs on the latest version of Windows (Windows 11 at the time of writing) and has also been tested on Windows 10.
+The release executable can be found in the [Releases section](https://github.com/jo3-tech/MTcontrol-hub/releases). It is a portable program. Simply download the file `ncHub 0.0.0.zip`, extract to your desired directory, open the `ncHub 0.0.0` folder and double click on `ncHub.exe` to start the application. It runs on the latest version of Windows (Windows 11 at the time of writing) and has also been tested on Windows 10.
 
 ## Usage
 
