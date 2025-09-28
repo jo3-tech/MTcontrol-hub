@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\BaseEngine.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\DefaultTheme.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\EngineGLFW.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\EngineOpenGLES.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\EngineVk.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\Gui.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\Helpers.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\src\ofxImGuiLoggerChannel.cpp">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui.cpp">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui_demo.cpp">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui_draw.cpp">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui_widgets.cpp">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiCommon.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiConnectionMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiInfoMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiLogoMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiModeGcSenderToolbar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiModeJogToolbar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiModeMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiSettingsMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiTesting.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{dcb2f6c4-29cb-476b-bd49-be0d0c5669fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxImGui-master">
+      <UniqueIdentifier>{3a255eb3-e846-4080-acb5-786581f26f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxImGui-master\src">
+      <UniqueIdentifier>{5e911c7a-aa55-4b1a-8aa9-17cd74a73d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxImGui-master\libs">
+      <UniqueIdentifier>{14cc122d-e435-41ab-a776-9d8ab0aa9f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxImGui-master\libs\imgui">
+      <UniqueIdentifier>{183e7d98-1e52-4471-bbc7-ec22c9508265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxImGui-master\libs\imgui\src">
+      <UniqueIdentifier>{a6f12768-aea2-42c5-85c3-af648326bbed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\BaseEngine.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\BaseTheme.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\DefaultTheme.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\EngineGLFW.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\EngineOpenGLES.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\EngineVk.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\Gui.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\Helpers.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\imconfig.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\ofxImGui.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\src\ofxImGuiLoggerChannel.h">
+      <Filter>addons\ofxImGui-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui.h">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imgui_internal.h">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imstb_rectpack.h">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imstb_textedit.h">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxImGui-master\libs\imgui\src\imstb_truetype.h">
+      <Filter>addons\ofxImGui-master\libs\imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiCommon.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiConnectionMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiInfoMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiLogoMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiModeGcSenderToolbar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiModeJogToolbar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiModeMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiSettingsMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTesting.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\_change_record.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>

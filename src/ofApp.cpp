@@ -1,4 +1,4 @@
-// Copyright (C) 2017 - 2018 Joseph Morgridge
+// Copyright (C) 2017 - 2020 Joseph Morgridge
 //
 // Licensed under GNU General Public License v3.0 (GPLv3) License.
 // See the LICENSE file in the project root for full license details.
@@ -11,19 +11,6 @@
 
 #include "ofApp.h"
 
-//GLOBAL VARIABLES & CONSTANTS
-//=======================================================================================================================================
-
-//General
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-//Graphical user interface (GUI)
-
-ofxImGui::Gui SOFTWARE_GUI;
-
-//Other
-//All other variables and constants are defined and initalised in the relevant .h and .cpp files associated with this project.
-
 //FUNCTIONS
 //=======================================================================================================================================
 
@@ -32,36 +19,33 @@ ofxImGui::Gui SOFTWARE_GUI;
 
 void ofApp::setup(){
 //---------------------------------------------------------------------------------------------------------------------------------------
+
+//DEBUGGING.
 //cout << "...\n...Setup Start...\n..." << endl;
 
-//cout << "...Setup GUI...\n" << endl;
+ofSetFrameRate(0);
 
-FreeConsole();				 //Surpress the terminal/output window.
+//TESTING.
+//ofSetVerticalSync(false);
+//ofGetWindowPtr()->setVerticalSync( false );
 
-ofSetWindowTitle(windowTitle);
+guiGeneralGuiSetup(); //General GUI Settings. 
 
-ofSetWindowShape(windowSizeX, windowSizeY);
-//ofSetWindowPosition(windowPosX, windowPosY);
+guiGuiObject.setup(); //Setup GUI object.
 
-ofSetEscapeQuitsApp(false);		//Prevent the program from quitting automatically when "ESC" key is pressed.
+guiGeneralGuiStyleSettings(); //Set up GUI colours and theme/style.
 
-loadLogo();
+guiScanDevices();
 
-loadSymbols();
+//TESTING.
+//guiLoadTestImages();
+//cout << "output of testFunctionForNameSpace = " << endl;
+//cout << testNameSpace::testFunctionForNameSpace() << endl;
 
-ofBackground(windowColour);	
-
-SOFTWARE_GUI.setup();			//Setup ImGui GUI.
-
-//ImGui::GetIO().MouseDrawCursor = false;	//Prevent ImGui from drawing it's own mouse cursor. Although this is already false by default?
-
-//cout << "...Setup Serial Communications...\n" << endl;
-
-scanDevices();
-
+//DEBUGGING.
 //cout << "...\n...Setup End...\n..." << endl;
 
-} //End of void ofApp::setup()
+}
 
 //Update Function
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -69,9 +53,9 @@ scanDevices();
 void ofApp::update(){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
-//Not currently used.
+//Not currently used. May be used for robot functions if the robot controller is merged with this.
 
-} //End of void ofApp::update()
+}
 
 //Draw Function
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -79,67 +63,83 @@ void ofApp::update(){
 void ofApp::draw(){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
-SOFTWARE_GUI.begin();	//Begin ofxImGui GUI creation - required call at the start of draw().
+guiGuiObject.begin(); //Begin GUI creation - required call at the start of draw().
 
-//Uncomment the following to display the demo gui showing all ImGUi's capabilities.
-//ImGui::ShowTestWindow();
+//TESTING.
+//Uncomment this to display the demo gui showing all ImGUi's capabilities.
+//ImGui::ShowDemoWindow();
 
-//Uncomment this to interactively test new colour styles.
-//However, generalGuiStyleSettings() at the start and end of the GUI must be commented out for this to work properly.
+//TESTING.
+//Uncomment this to interactively test new drawing and colour styles, fonts and scale factors, etc.
 //ImGui::ShowStyleEditor();
 
-//Uncomment the following to display a colour button where you can change the rgb colours.
+//TESTING.
+//Uncomment this to display a colour button where you can change the rgb colours.
 //static float col1[3] = { 1.0f,0.0f,0.2f };
 //ImGui::ColorEdit3("color 1", col1);	
 
-//General GUI Style Settings - Start
-//++++++++++++++++++++++++++++++++++
+//TESTING.
+//Uncomment these for general GUI testing.
+//guiTestingImgui();
 
-generalGuiStyleSettings(); //This pushes all the required style colours. This must be called again at the end of the GUI to pop the colours.
+guiGetGuiScaleFactor();
 
-//Settings Menu
-//+++++++++++++
+guiGetLogoMenuPos(); //Part of Logo Menu.
 
-settingsMenu();
+ImGui::SetNextWindowPos(ImVec2(guiSubWindowPosX, guiSubWindowPosY));
 
-//Connection Menu
-//+++++++++++++++
+ImGui::SetNextWindowSize(ImVec2(guiSubWindowSizeX*guiScaleFactor, guiSubWindowSizeY*guiScaleFactor));
 
-connectionMenu();
+ImGuiWindowFlags guiMainWindowFlags = ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_MenuBar;
 
-//Mode Menu
-//+++++++++
+ImGui::Begin(guiSecondaryName, NULL, guiMainWindowFlags);
 
-modeMenu();
+guiSettingsMenuBar();
 
-//Logo Menu
-//+++++++++
+guiConnectionMenu();
 
-logoMenu();
+guiModeMenu();
 
-//General GUI Style Settings - End
-//++++++++++++++++++++++++++++++++
+ImGui::End();
 
-generalGuiStyleSettings(); //This pops all the style colours pushed at the start of the GUI.
+//DEFERRED. guiInfoMenu.
+//guiInfoMenu();
 
-SOFTWARE_GUI.end();		   //End ofxImGui GUI creation - required call at the end of draw().
+guiLogoMenu();
 
+//DEBUGGING.
+//cout << "guiCurrentModeBusy = " << endl;
+//cout << guiCurrentModeBusy << endl;
+//cout << "guiCurrentModeStillBusy = " << endl;
+//cout << guiCurrentModeStillBusy << endl;
 
-displayLogo();			   //NOTE: This is called after the GUI ends so that it displays on top of the GUI windows.
+guiInfoPopupToolBar(guiProgramBusyToolBarName, guiProgramBusyInfo, guiDisplayBusyPopup);
 
-displayAboutGraphics();	   //See above comments.
+guiGuiObject.end(); //End ofxImGui GUI creation - required call at the end of draw().
 
-} //End of void ofApp::draw()
+//NOTE
+//----
+//The following are called after the GUI ends so that it displays on top of the GUI windows.
+
+guiDisplayLogo(); //Part of Logo Menu.
+
+guiDisplayAboutGraphics(); //Part of Settings Menu.
+
+}
+
+//Other Functions
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 void ofApp::keyPressed(int key){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
+//DEBUGGING.
 //cout << "key pressed" << endl;
 //cout << key << endl;
 
-jogKeyboardInput(true, key);
+guiJogKeyboardInput(true, key);
 
-/*
+/*TESTING.
 if(key == OF_KEY_ESC){
 	//Add an escape button press action if required
 	//NOTE: You must put "ofSetEscapeQuitsApp(false);" in setup 
@@ -147,16 +147,16 @@ if(key == OF_KEY_ESC){
 }
 //*/
 
-} //End of void ofApp::keyPressed(int key)
+}
 
 void ofApp::keyReleased(int key){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
-jogKeyboardInput(false, key);
+guiJogKeyboardInput(false, key);
 
-} //End of void ofApp::keyReleased(int key)
+}
 
-void ofApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 }
@@ -191,13 +191,12 @@ void ofApp::windowResized(int w, int h){
 
 }
 
-void ofApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg) {
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 }
 
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 }
-

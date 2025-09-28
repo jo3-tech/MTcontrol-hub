@@ -1,9 +1,9 @@
-# ncHub
+# MTcontrol-hub
 
 Windows GUI software for controlling a 4-axis desktop robot arm.
 
-![ncHub Jog Mode Page](documentation/nchub-jog-mode-page.png)
-![ncHub G-Code Sender Mode Page](documentation/nchub-g-code-sender-mode-page.png)
+![MTcontrol-hub Jog Mode Page](documentation/MTcontrol-hub-jog-mode-page.png)
+![MTcontrol-hub G-Code Sender Mode Page](documentation/MTcontrol-hub-g-code-sender-mode-page.png)
 
 ## Introduction
 
@@ -11,11 +11,11 @@ This legacy project (developed as ncHub between 2017 and 2018, then as MTcontrol
 
 This project was an early-stage prototype. All code, documentation, and descriptions were originally written over 5 years ago and have been copied here with only minor modification. As such, they may lack polish, clarity, or completeness, and do not reflect current best practices.
 
-The developed software; ncHub, consists of a GUI (graphical user interface) for controlling the MTarm 4r robot (at prototype 2); a 4-axis desktop robot arm. For this version of the software (ncHub 0.0.0), the target counterpart firmware version for the robot is mtarm4r-mcu-firmware _controller-0.0.0 (requires some minor modifications in the communication protocol) (Note: the counterpart firmware is currently closed source/private).
+The developed software; MTcontrol-hub, consists of a GUI (graphical user interface) for controlling the MTarm 4r robot (at prototype 2); a 4-axis desktop robot arm. The target counterpart firmware version for the robot is mtarm4r-mcu-firmware _controller-0.0.0 (Note: the counterpart firmware is currently closed source/private).
 
 The [Dear ImGui](https://github.com/ocornut/imgui) library was used to develop the GUI, via the [ofxImGui](https://github.com/jvcleave/ofxImGui) binding for openFrameworks.
 
-ncHub can also be used as a general purpose G-code sender or serial console/terminal application.
+MTcontrol-hub can also be used as a general purpose G-code sender or serial console/terminal application.
 
 The recommended method to build this project is with openFrameworks 0.11.x using Visual Studio 2017 Community. Newer versions may work but have not been tested. The entire project must be placed in the following directory:
 
@@ -23,21 +23,22 @@ The recommended method to build this project is with openFrameworks 0.11.x using
 ...\openframeworks\of_v0.11.0_vs_release\apps\myApps
 ```
 
-The release executable can be found in the [Releases section](https://github.com/jo3-tech/MTcontrol-hub/releases). It is a portable program. Simply download the file `ncHub 0.0.0.zip`, extract to your desired directory, open the `ncHub 0.0.0` folder and double click on `ncHub.exe` to start the application. It runs on the latest version of Windows (Windows 11 at the time of writing) and has also been tested on Windows 10.
+The release executable can be found in the [release folder](release). It is a portable program. Simply download the file `MTcontrol-hub 0.0.0.zip`, extract to your desired directory, open the `MTcontrol-hub 0.0.0` folder and double click on `MTcontrol-hub.exe` to start the application. It runs on the latest version of Windows (Windows 11 at the time of writing) and has also been tested on Windows 10.
 
 ## Usage
 
 ### Jog Mode
 
-Note: The buttons in Jog mode control relevant actions when the software is connected to the aforementioned robot/firmware. If you want to control a different device, see the Communication Protocol (J-codes, G-codes, and M-codes) section for the messages/commands sent from the software over serial when buttons are pressed.
+Note: The buttons in Jog mode control relevant actions when the software is connected to the aforementioned robot/firmware. If you want to control a different device, see the Communication Protocol (J-codes, G-codes, R-codes, and M-codes) section for the messages/commands sent from the software over serial when buttons are pressed.
 
 - Connect your device and click `Scan for Devices` if your device is not displayed.
 - Select your device from the `Port` drop-down list.
 - Select the required baud rate from the `Baud` the drop-down list.
 - Click `Connect to Device`.
-- Note that Joint 1 is always selected by default - use `Left` and `Right` buttons to move joint 1. You can also use the Left and Right arrow keyboard keys to move joint 1.
-- Click the relevant `Select joint` button to select joint 2, 3, or 4. You can also use the 2, 3 or 4 keyboard keys to select the joints. Use the `Up` and `Down` buttons to move the selected joint. You can also use the Up and Down arrow keyboard keys to move the selected joint.
+- Note that Joint 1 is always selected by default - use `Left Arrow` and `Right Arrow` buttons to move joint 1. You can also use the Left and Right arrow keyboard keys to move joint 1.
+- Click the relevant `Select joint` button to select joint 2, 3, or 4. You can also use the 2, 3 or 4 keyboard keys to select the joints. Use the `Up Arrow` and `Down Arrow` buttons to move the selected joint. You can also use the Up and Down arrow keyboard keys to move the selected joint.
 - Click `Auto Calibration` to start the calibration process to home the joints. Press again to stop the process before completion.
+- Click `Home Position` to move the robot to its soft home position. Press again to stop the process before completion.
 - Click the `Select Tool` drop-down list to select a desired tool, the options are `No Tool`, `Pen`, `Gripper` and `Extruder`.
 - If `Gripper` is selected, the following extra buttons appear: `Move Gripper` (Starts the gripper motor on press, stops the gripper motor on release), `Gripper Direction` (Change the gripper motor direction; grip/release).
 - If `Extruder` is selected, the following extra buttons appear: `Select Extruder (Heated)` (Starts heating the extruder heating element to a predefined temperature), `Select Extruder (No Heat)` (Enable the extruder motor to be used cold), `Toggle Extruder` (Starts/stops the extruder motor), `Extruder Direction` (Change the extruder motor direction; extrude/retract).
@@ -48,7 +49,7 @@ Note: The buttons in Jog mode control relevant actions when the software is conn
 - Click the `Playback` button to play back the current file containing recorded poses.
 - Tip to continue recording from the end of a previously recorded file; playback the previously recorded file, create a new record file and record new positions, then combine the previously recorded file and the new manually by simply copying and pasting the code from the new file into the previously recorded file.
 
-## Communication Protocol (J-codes, G-codes, and M-codes)
+## Communication Protocol (J-codes, G-codes, R-codes, and M-codes)
 
 ### All modes
 
@@ -81,18 +82,19 @@ The following messages are sent in response the relevant GUI button or keyboard 
 |`Select Joint 2`  |2           |`J002\n`|
 |`Select Joint 3`  |3           |`J003\n`|
 |`Select Joint 4`  |4           |`J004\n`|
-|`Up`              |Up arrow    |`J013\n`|
-|`Left`            |Left arrow  |`J011\n`|
-|`Right`           |Right arrow |`J012\n`|
-|`Down`            |Down arrow  |`J014\n`|
-|`Joint Jog Speed` |N/A         |`J253T<speed value>\n`|
-|`Auto Calibration`|N/A         |`J254\n` on initial click `{` on second click (before completion)|
-|`Record Pose`     |N/A         |`M137`|
+|`Up arrow`        |Up arrow    |`J013\n`|
+|`Left arrow`      |Left arrow  |`J011\n`|
+|`Right arrow`     |Right arrow |`J012\n`|
+|`Down arrow`      |Down arrow  |`J014\n`|
+|`Joint Jog Speed` |N/A         |`J252T<speed value>\n`|
+|`Auto Calibration`|N/A         |`J251\n`|
+|`Home Position`   |N/A         |`R005\n`|
+|`Record Pose`     |N/A         |`J253`  |
 
 The MTarm 4r robot's firmware is expected to send following message when the calibration process is complete:
 
 ``` text
-}
+>
 ```
 
 When a tool is selected (a serial device must first be connected), extra GUI buttons appear.
@@ -119,6 +121,12 @@ If Heated option is selected, the software expects to receive the following mess
 }
 ```
 
+The following message is sent in response to any action being canceled, such as as any of the arrow buttons or gripper move button transitioning from being held to being released, stopping Auto Calibration or homing before completion:
+
+``` text
+{
+```
+
 ### G-Code Sender mode
 
 When sending G-code continuously from a file, the software expects to receive the follow message from the MTarm 4r robot to confirm receipt and indicate that the next line of G-code should be sent:
@@ -127,10 +135,10 @@ When sending G-code continuously from a file, the software expects to receive th
 >
 ```  
 
-Also, the following message is sent at the start and end of the sending process:
+Also, the following message is sent at the start and end of the sending process, or when the process is stopped before completion:
 
 ``` gcode
-M016\n
+R010\n
 ```
 
 When connected to the MTarm 4r robot, the robots firmware keeps track of the robots pose in joint/configuration space by counting stepper motor steps. This command instructs it to perform forward kinematics to update the pose in cartesian/task space and obtain the end-effector's position and orientation.
